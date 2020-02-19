@@ -21,7 +21,7 @@ def vision_feed(image_list):
         public_tweets = api.home_timeline()
         
         for tweet in public_tweets:
-            tweet_texts = tweet.text
+            tweet_texts.append(tweet.text)
             media_files = set()
             media = tweet.entities.get('media', [])
             if(len(media) > 0):
