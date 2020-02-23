@@ -21,12 +21,13 @@ def vision_feed(image_list):
         public_tweets = api.home_timeline()
         
         for tweet in public_tweets:
-            tweet_texts.append(tweet.text)
+          
             media_files = set()
             media = tweet.entities.get('media', [])
             if(len(media) > 0):
-                media_files.add(media[0]['media_url'])           
-            
+                media_files.add(media[0]['media_url'])  
+                tweet_texts.append((tweet.text, 1))         
+            tweet_texts.append((tweet.text, 0))
             for media_file in media_files:
                 test = wget.download(media_file)
                 image_list.append(test)
