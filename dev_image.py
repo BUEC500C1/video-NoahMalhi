@@ -1,10 +1,12 @@
 from PIL import Image, ImageDraw
 import os
+import threading
 
-def convert_text(tweet_texts, imagelist):
+
+def thread_func(tweet_texts, imagelist):
+
     iter = 0
     img_iter = 0
-    #for tweet in tweet_texts:
     for (x,y) in tweet_texts:
         
         filename = "img0" + str(iter) + ".png"
@@ -21,4 +23,12 @@ def convert_text(tweet_texts, imagelist):
         iter +=1
         filename = ''
         f.close()
+    
+
+def convert_text(tweet_texts, imagelist):
+   
+    #for tweet in tweet_texts:
+    x = threading.Thread(target=thread_func, args=(tweet_texts, imagelist))
+    x.start()
+    
         
