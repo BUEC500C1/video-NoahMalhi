@@ -1,7 +1,11 @@
 #!/bin/bash
-rm -r *.png
+
 rm -r *.avi
 
-python3 main.py -y 
+#johnmulaneybot
+python3 main.py -y malhinoah celtics TheGoldenRatio4 NBA
+
+rm -r *.png
+rm -r *.jpg
 #ps -ef | grep python
 

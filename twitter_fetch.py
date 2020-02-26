@@ -2,13 +2,11 @@ import tweepy
 import keys
 import io
 import os
-import json
 import wget
+from PIL import Image
 
-from google.cloud import vision
-from google.cloud.vision import types
-
-def vision_feed(image_list):
+#malhinoah, johnmulaneybot, TheGoldenRatio4
+def vision_feed(image_list, username):
 
     data = {}
     data['tweets'] = []
@@ -18,7 +16,7 @@ def vision_feed(image_list):
         auth = tweepy.OAuthHandler(keys.consumer_key, keys.consumer_secret)
         auth.set_access_token(keys.access_token, keys.access_token_secret)
         api = tweepy.API(auth)
-        public_tweets = api.home_timeline()
+        public_tweets = api.user_timeline(screen_name = username, count = 20, include_rts =True)
         
         for tweet in public_tweets:
           
@@ -26,11 +24,15 @@ def vision_feed(image_list):
             media = tweet.entities.get('media', [])
             if(len(media) > 0):
                 media_files.add(media[0]['media_url'])  
-                tweet_texts.append((tweet.text, 1))         
-            tweet_texts.append((tweet.text, 0))
+                tweet_texts.append((tweet.text, 1)) 
+                
+            else:
+                tweet_texts.append((tweet.text, 0))
+        
             for media_file in media_files:
                 test = wget.download(media_file)
                 image_list.append(test)
+                           
                 
         success = 1
         return (image_list, tweet_texts, success)
