@@ -3,6 +3,7 @@ import keys
 import io
 import os
 import wget
+import json
 from PIL import Image
 
 #malhinoah, johnmulaneybot, TheGoldenRatio4
@@ -11,7 +12,7 @@ def vision_feed(image_list, username):
     data = {}
     data['tweets'] = []
     tweet_texts = []
-    success = 0
+  
     try:
         auth = tweepy.OAuthHandler(keys.consumer_key, keys.consumer_secret)
         auth.set_access_token(keys.access_token, keys.access_token_secret)
@@ -32,12 +33,18 @@ def vision_feed(image_list, username):
             for media_file in media_files:
                 test = wget.download(media_file)
                 image_list.append(test)
-                           
-                
-        success = 1
-        return (image_list, tweet_texts, success)
-
+    
+        return (image_list, tweet_texts)
     except ValueError:
-        success = ValueError
-        return ([], success)
+       
+        with open('test_tweets.json', 'r') as json_data:
+            parsed_json = (json.loads(json_data))
+        
+            for tweet in parsed_json:
+                tweet_texts.append((tweet['Tweet']))
+                if (tweet['Image'] != 0):
+                    test = wget.download(tweet['Image'])
+                    image_list.append(test)
+        
+        return(image_list, tweet_texts)
 

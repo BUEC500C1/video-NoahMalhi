@@ -6,40 +6,23 @@ from multiprocessing import Process
 import os
 import sys
 
-
-def dev_video(username):
-    #each process runs ffmpeg using its own username.png files
-    pid = os.getpid()
-    os.system('ffmpeg -framerate 0.5 -i '+username+'%d.png video'+str(pid)+'.avi')
+#dev_image file contains all functions for making images and videos
+#twitter_fetch file is used for getting tweets and images from twitter
 
 def main(username):
     image_list = []
-    (image_list, tweet_texts, success) = twitter_fetch.vision_feed(image_list, username)
-
-    if(success == 0):
-        print('Error retrieving tweets')
-        return 1
+    (image_list, tweet_texts) = twitter_fetch.vision_feed(image_list, username)
 
     dev_image.convert_text(tweet_texts, image_list, username)
 
-    #Uses 3 threads to run FFMPEG
-    dev_video(username)
-    # threads = []
-    # for n in range (1,4):
-    #     x = threading.Thread(target=dev_video, args=(username,))
-    #     x.start()
-    #     threads.append(x)
+    dev_image.dev_video(username)
 
-    # for x in threads:
-    #     x.join()
     
 
 
 #makes multiple videos at once using multiprocessing
 #using Intel i7 with 8 cores and can make 7 videos at once (7 processes)
-# processes = []
-#args=(tweet_texts, imagelist))
-
+#gets input from argv --> when running include usernames seperated by spaces
 processes = []
 if (len(sys.argv) < 8):
     for m in range (1,len(sys.argv)):
