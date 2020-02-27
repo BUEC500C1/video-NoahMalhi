@@ -1,5 +1,4 @@
 import twitter_fetch
-import video_stream
 import dev_image
 import threading
 from multiprocessing import Process
@@ -11,11 +10,13 @@ import sys
 
 def main(username):
     image_list = []
-    (image_list, tweet_texts) = twitter_fetch.vision_feed(image_list, username)
+    (image_list, tweet_texts, success) = twitter_fetch.vision_feed(image_list, username)
 
     dev_image.convert_text(tweet_texts, image_list, username)
 
-    dev_image.dev_video(username)
+    dev_image.dev_video(username, success)
+
+    return (tweet_texts, image_list)
 
     
 

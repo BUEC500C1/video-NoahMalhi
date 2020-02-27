@@ -12,6 +12,7 @@ def vision_feed(image_list, username):
     data = {}
     data['tweets'] = []
     tweet_texts = []
+    success = 0
   
     try:
         auth = tweepy.OAuthHandler(keys.consumer_key, keys.consumer_secret)
@@ -33,11 +34,11 @@ def vision_feed(image_list, username):
             for media_file in media_files:
                 test = wget.download(media_file)
                 image_list.append(test)
-    
-        return (image_list, tweet_texts)
+        success = 1
+        return (image_list, tweet_texts, success)
     except ValueError:
-       
-        with open('test_tweets.json', 'r') as json_data:
+        success = 1
+        with open('tweetson.json', 'r') as json_data:
             parsed_json = (json.loads(json_data))
         
             for tweet in parsed_json:
@@ -46,5 +47,5 @@ def vision_feed(image_list, username):
                     test = wget.download(tweet['Image'])
                     image_list.append(test)
         
-        return(image_list, tweet_texts)
+        return(image_list, tweet_texts, success)
 

@@ -3,10 +3,12 @@ import os
 import threading
 
 
-def dev_video(username):
+def dev_video(username, success):
     #each process runs ffmpeg using its own username.png files
-    pid = os.getpid()
-    os.system('ffmpeg -framerate 0.5 -i '+username+'%d.png video'+str(pid)+'.avi')
+    if (success == 1): 
+        pid = os.getpid()
+        os.system('ffmpeg -framerate 0.5 -i '+username+'%d.png video'+str(pid)+'.avi')
+    
 
 def thread_func(tweet_texts, imagelist, username):
     font = ImageFont.truetype("Verdana.ttf" ,12)
