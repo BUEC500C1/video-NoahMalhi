@@ -4,6 +4,7 @@ import twitter_fetch
 import pytest
 
 #just tests successfull run
+testname = "testname"
 def test_twitterpull(testname):
 
     (tweets, images) = main.main(testname)
