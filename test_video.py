@@ -4,7 +4,7 @@ import twitter_fetch
 import pytest
 
 #just tests successfull run
-def twitterpull(testname):
+def test_twitterpull(testname):
 
     (tweets, images) = main.main(testname)
     assert images[0] == "ERkrNheVAAAMcIq"
