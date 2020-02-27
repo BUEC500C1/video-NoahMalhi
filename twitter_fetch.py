@@ -37,7 +37,7 @@ def vision_feed(image_list, username):
         success = 1
         return (image_list, tweet_texts, success)
     except ValueError:
-        success = 1
+        success = 0
         with open('tweetson.json', 'r') as json_data:
             parsed_json = (json.loads(json_data))
         
