@@ -8,7 +8,8 @@ def dev_video(username, success):
     if (success == 1): 
         pid = os.getpid()
         os.system('ffmpeg -framerate 0.5 -i '+username+'%d.png video'+str(pid)+'.avi')
-    
+    else:
+        return
 
 def thread_func(tweet_texts, imagelist, username):
     font = ImageFont.truetype("Verdana.ttf" ,12)
