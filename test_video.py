@@ -5,7 +5,7 @@ import pytest
 
 #just tests successfull run
 testname = "testname"
-def test_twitterpull(testname):
+def test_twitterpull():
 
     (tweets, images) = main.main(testname)
     assert images[0] == "ERkrNheVAAAMcIq"
