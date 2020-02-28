@@ -11,4 +11,5 @@ def test_twitterpull():
     assert all([a==b for a,b in zip(actual, tweet_texts)])
 
     assert main.main("123") == 0
+    assert main.main("") == 0
     
