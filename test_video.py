@@ -10,4 +10,5 @@ def test_twitterpull():
     actual = ["This is a pytest test tweet", "Seconds test tweet", "Thirdd, no image"]
     assert all([a==b for a,b in zip(actual, tweet_texts)])
 
+    assert main.main("123") == 0
     

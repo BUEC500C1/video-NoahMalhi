@@ -9,6 +9,11 @@ import sys
 #twitter_fetch file is used for getting tweets and images from twitter
 
 def main(username):
+
+    if (username.isdigit()):
+        print("Username can not be all numbers")
+        return 0
+
     image_list = []
     (image_list, tweet_texts, success) = twitter_fetch.vision_feed(image_list, username)
 
@@ -25,6 +30,12 @@ def main(username):
 #using Intel i7 with 8 cores and can make 7 videos at once (7 processes)
 #gets input from argv --> when running include usernames seperated by spaces
 processes = []
+
+if (len(sys.argv) < 2) {
+    print("Enter a username")
+    return 1
+}
+
 if (len(sys.argv) < 8):
     for m in range (1,len(sys.argv)):
         username = sys.argv[m]   
