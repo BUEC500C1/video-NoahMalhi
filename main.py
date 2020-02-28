@@ -14,10 +14,10 @@ def main(username):
         print("Username can not be all numbers")
         return 0
 
-    if (username == '') {
+    if (username == ''):
         print("Please enter a username")
         return 0
-    }
+    
     image_list = []
     (image_list, tweet_texts, success) = twitter_fetch.vision_feed(image_list, username)
 
