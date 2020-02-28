@@ -31,10 +31,10 @@ def main(username):
 #gets input from argv --> when running include usernames seperated by spaces
 processes = []
 
-if (len(sys.argv) < 2) {
+if (len(sys.argv) < 2):
     print("Enter a username")
-    return 1
-}
+    exit
+
 
 if (len(sys.argv) < 8):
     for m in range (1,len(sys.argv)):

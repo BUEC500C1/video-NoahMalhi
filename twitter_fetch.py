@@ -40,8 +40,8 @@ def vision_feed(image_list, username):
     except ValueError:
             success = 0
             with open('tweetson.json') as json_file:
-                data = json.load(json_file)
-                for tweets in data['twittertest']:
+                data_parse = json.load(json_file)
+                for tweets in data_parse['twittertest']:
                     tweet_texts.append(str(tweets['Tweet']))
                     #if (str(tweets['Image']) != 0):
                         #test = wget.download(str(tweets['Image']))
