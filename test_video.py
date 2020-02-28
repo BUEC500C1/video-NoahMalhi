@@ -6,9 +6,8 @@ import pytest
 #just tests successfull run
 testname = "testname"
 def test_twitterpull():
+    (tweet_texts , image_list) = main.main(testname)
+    actual = ["This is a pytest test tweet", "Seconds test tweet", "Thirdd, no image"]
+    assert all([a==b for a,b in zip(actual, tweet_texts)])
 
-    (tweets, images) = main.main(testname)
-    #assert images[0] == "ERkrNheVAAAMcIq"
-    assert tweets[0] == "This is a pytest test tweet"
-    assert tweets[1] == "Seconds test tweet"
-    assert tweets[2] == "Thirdd, no image"
+    

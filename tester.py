@@ -12,3 +12,4 @@ with open('tweetson.json') as json_file:
             #image_list.append(test)
 # print(image_list)
 print(tweet_texts)
+print(tweet_texts[1])
