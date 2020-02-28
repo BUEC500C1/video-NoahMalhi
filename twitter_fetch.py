@@ -7,15 +7,9 @@ import json
 from PIL import Image
 
 #malhinoah, johnmulaneybot, TheGoldenRatio4
-def vision_feed(image_listwith open('tweetson.json', 'r') as json_data:
-            parsed_json = (json.loads(json_data))
-        
-            for tweet in parsed_json:
-                tweet_texts.append((tweet['Tweet']))
-                if (tweet['Image'] != 0):
-                    test = wget.download(tweet['Image'])
-                    image_list.append(test)
-        
+def vision_feed(image_list, username):
+
+    data = {}
     data['tweets'] = []
     tweet_texts = []
     success = 0
@@ -42,15 +36,15 @@ def vision_feed(image_listwith open('tweetson.json', 'r') as json_data:
                 image_list.append(test)
         success = 1
         return (image_list, tweet_texts, success)
+ 
     except ValueError:
-        success = 0
-        with open('tweetson.json') as json_file:
-	        data = json.load(json_file)
-	        for tweets in data['twittertest']:
-	            tweet_texts.append(str(tweets['Tweet']))
-                if (str(tweets['Image']) != 0):
-                    test = wget.download(str(tweet['Image']))
-                    image_list.append(test)
-        
-        return(image_list, tweet_texts, success)
-
+            success = 0
+            with open('tweetson.json') as json_file:
+                data = json.load(json_file)
+                for tweets in data['twittertest']:
+                    tweet_texts.append(str(tweets['Tweet']))
+                    if (str(tweets['Image']) != 0):
+                        test = wget.download(str(tweet['Image']))
+                        image_list.append(test)
+            
+            return(image_list, tweet_texts, success)
